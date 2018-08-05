@@ -7,6 +7,11 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
   end
+  
+  def search
+    @products = Product.search(params[:search])
+  end
+  
 
   # GET /products/1
   # GET /products/1.json
@@ -39,6 +44,8 @@ class ProductsController < ApplicationController
     end
   end
 
+
+
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
@@ -50,7 +57,7 @@ class ProductsController < ApplicationController
       end
       '''
 
-      if @product.update(product_params.permit(:item,:content,:price,:picture))
+      if @product.update(product_params.permit(:item,:content,:price,:picture, :picture_cache, :remove_picture)
         format.html { redirect_to @product, notice: '商品情報が変更されました' }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -79,6 +86,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:item, :content, :shop, :price, :picture)
+      params.require(:product).permit(:item, :content, :shop, :price, :picture, :picture_cache, :remove_picture)
     end
 end

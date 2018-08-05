@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'posts/index'=>"posts#index"
   get '/top'=>"home#top"
   get '/detail'=>"home#detail"
+  get '/products'
 
 
 end

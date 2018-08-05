@@ -25,6 +25,12 @@
         <td><%= link_to '削除', product, method: :delete, data: { confirm: '一度削除するとデータは完全に失われます。削除してもよいですか？' } %></td>
       </tr>
     <% end %>
+    <%= form_tag search_product_path, :method => 'get' do %> <%#projects_pathはモデル名で読みかえること %>
+      <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "検索", :name => nil %>
+      </p>
+    <% end %>
   </tbody>
 </table>
 

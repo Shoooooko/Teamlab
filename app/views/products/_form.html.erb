@@ -39,7 +39,7 @@ https://qiita.com/kakiuchis/items/9ab8dc212ed5c57a2ddd
   <div class="field">
       <% if @product.picture? %>
         <div class="thumbnail">
-          <%= image_tag @product.picture.url %>
+          <%= image_tag (@product.picture.url) %>
         </div>
       <% end %><br>
       <%= form.label :'商品画像'%>
@@ -48,11 +48,11 @@ https://qiita.com/kakiuchis/items/9ab8dc212ed5c57a2ddd
     </div>
 
   <div class="field">
-    <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+    <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 画像を削除-->
     <% if @product.persisted? && @product.picture? %>
       <label>
         <%= form.check_box :remove_picture %>
-        画像を削除
+        
       </label>
     <% end %>
   </div>
