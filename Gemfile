@@ -62,3 +62,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'sidekiq'
+gem 'bootstrap-sass'
+gem 'bootstrap', '4.0.0.alpha6'
+gem 'jquery-rails'
+gem 'popper_js', '~> 1.12.3'
+gem 'rails-assets-tether', '>= 1.1.0'
+gem 'carrierwave'

@@ -28,10 +28,6 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-    item:@product.item
-    content:@product.content
-    price:@produc.price
-    image_name:'product.jpg'
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: '商品登録が完了しました' }
@@ -40,19 +36,21 @@ class ProductsController < ApplicationController
         format.html { render :new }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
+    end
   end
 
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    respond_to do |format|
-      if params[:image]
+    respond_to do |format|#responseの形式で分岐(html/json)
+      '''if params[:image]
         @product.image_name = "#{@product.id}.jpg"
         image = params[:image]
         File.binwrite("public/product_images/#{@product.image_name}", image.read)
       end
+      '''
 
-      if @product.update(product_params).permit(:item,:content.:price)
+      if @product.update(product_params.permit(:item,:content,:price,:picture))
         format.html { redirect_to @product, notice: '商品情報が変更されました' }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -67,10 +65,11 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to products_url, notice: '商品情報が削除されました' }
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -80,6 +79,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:item, :content, :image_name, :price)
+      params.require(:product).permit(:item, :content, :shop, :price, :picture)
     end
 end

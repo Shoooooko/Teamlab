@@ -1,25 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Item:</strong>
+  <strong>商品タイトル：</strong>
   <%= @product.item %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>商品説明：</strong>
   <%= @product.content %>
 </p>
 
-<p>
-  <strong>Image name:</strong>
-  <%= @product.image_name %>
-  <img src="<%="/product_images/#{@product.image_name}"%>">
-</p>
 
 <p>
-  <strong>Price:</strong>
+  <strong>店舗名：</strong>
+  <%= @product.shop %>
+</p>>
+
+<p>
+  <strong>商品画像：</strong>
+  <!--<%= @product.picture %>-->
+  <%= image_tag(@product.picture_url) if @product.picture.present? %>
+</p>
+
+
+<p>
+  <strong>価格：</strong>
   <%= @product.price %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to '変更', edit_product_path(@product) %> |
+<%= link_to 'BACK', products_path %>

@@ -1,3 +1,8 @@
+<!#form_withの使い方
+#https://techracho.bpsinc.jp/hachi8833/2017_05_01/39502/
+#scaffoldによる自動生成
+https://qiita.com/kakiuchis/items/9ab8dc212ed5c57a2ddd
+>
 <%= form_with(model: product, local: true) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
@@ -12,26 +17,52 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :item %>
-    <%= form.text_field :item %>
+    <%= form.label :'商品タイトル' %>
+    <%= form.text_field :item, id: :product_title%>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :'商品説明' %>
     <%= form.text_area :content %>
   </div>
 
   <div class="field">
-    <%= form.label :image_name %>
-    <%= form.text_field :image_name %>
+    <%= form.label :'店舗名' %>
+    <%= form.text_field :shop %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :'商品画像'%>
+    <%= form.file_field :picture, id: :product_picture%>
   </div>
 
   <div class="field">
-    <%= form.label :price %>
+      <% if @product.picture? %>
+        <div class="thumbnail">
+          <%= image_tag @product.picture.url %>
+        </div>
+      <% end %><br>
+      <%= form.label :'商品画像'%>
+      <%= form.file_field :picture, id: :product_picture%>
+      <%= form.hidden_field :picture_cache %>
+    </div>
+
+  <div class="field">
+    <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+    <% if @product.persisted? && @product.picture? %>
+      <label>
+        <%= form.check_box :remove_picture %>
+        画像を削除
+      </label>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :'価格' %>
     <%= form.number_field :price %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :'登録する'%>
   </div>
 <% end %>

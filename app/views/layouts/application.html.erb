@@ -10,6 +10,35 @@
   </head>
 
   <body>
+    <header>
+      <div class="header-logo">
+        <%= link_to("Products App", "/") %>
+      </div>
+      <ul class="header-menus">
+        <li>
+          <%= link_to("What is Products App?","/detail") %>
+        </li>
+        <li>
+          <%= link_to("商品一覧", "/products") %>
+        </li>
+        <li>
+          <%= link_to("新規商品登録", "/products/new") %>
+        </li>
+        <!--<li>
+          <%= link_to("店舗一覧", "/users/index") %>
+        </li>
+        <li>
+          <%= link_to("新規登録", "/signup") %>
+        </li>-->
+      </ul>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
