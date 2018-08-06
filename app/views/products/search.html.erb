@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+<h3>商品検索一覧</h3>
+<p>
+  <strong>商品検索一覧：</strong>
+  <%= @product.item %>
+</p>
+<table border="1">
+<caption>検索結果一覧</caption
+  <thead>
+    <tr>
+      <th>商品タイトル</th><br>
+      <th>商品説明</th><br>
+      <th>商品画像名</th><br>
+      <th>価格</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.item %></td><br>
+        <td><%= product.content %></td><br>
+        <td><%= product.picture %></td><br>
+        <td><%= product.price %></td><br>
+        <td><%= link_to '商品詳細', product %></td>
+        <td><%= link_to '変更', edit_product_path(product) %></td>
+        <td><%= link_to '削除', product, method: :delete, data: { confirm: '一度削除するとデータは完全に失われます。削除してもよいですか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '商品一覧', index_product_path %>
