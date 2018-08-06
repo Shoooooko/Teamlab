@@ -8,9 +8,17 @@ class Product < ApplicationRecord
 
     def self.search(search)
         if search
-            Product.where(['name Like?',"%#{search}%"])
+            Product.where(["item Like or shop Like or price Like?","%#{search}%"])
+            respond_to do |format|
+                format.html { redirect_to @product, notice: '検索結果一覧' }
+                format.json { render :show, status: :done, location: @product }
+            end
         else
             Product.all
+            respond_to do |format|
+                format.html { redirect_to :index, notice: '正しい検索項目を入力してください' }
+                format.json { render json: @product.errors, status: :unprocessable_entity }
+            end
         end
     end
 end

@@ -3,13 +3,22 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
-  #商品一覧ページ表示→show
+  #商品詳細ページ表示→show
   def index
     @products = Product.all
   end
   
   def search
     @products = Product.search(params[:search])
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to @product, notice: '商品登録が完了しました' }
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.html { render :new }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
   end
   
 
@@ -57,7 +66,7 @@ class ProductsController < ApplicationController
       end
       '''
 
-      if @product.update(product_params.permit(:item,:content,:price,:picture, :picture_cache, :remove_picture)
+      if @product.update(product_params.permit(:item,:content,:price,:picture, :picture_cache, :remove_picture))
         format.html { redirect_to @product, notice: '商品情報が変更されました' }
         format.json { render :show, status: :ok, location: @product }
       else
