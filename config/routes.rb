@@ -11,8 +11,8 @@ Rails.application.routes.draw do
                  PUT      /products/:id(.:format)       products#update
                  DELETE   /products/:id(.:format)       products#destroy
   '''
+  post '/products/search' =>"products#search"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get 'posts/index'=>"posts#index"
   get '/top'=>"home#top"
   get '/detail'=>"home#detail"
 

@@ -1,37 +1,29 @@
+<p id="notice"><%= notice %></p>
+  <% @products.each do |product| %>
+    <p>
+      <strong>商品タイトル：</strong>
+      <%= @product.item %>
+    </p>
+    <p>
+      <strong>商品説明：</strong>
+      <%= @product.content %>
+    </p>
+    <p>
+      <strong>店舗名：</strong>
+      <%= @product.shop %>
+    </p>
+    <p>
+      <strong>商品画像：</strong>
+      <!--<%= @product.picture %>-->
+      <%= image_tag(@product.picture_url) if @product.picture.present? %>
+    </p>
+    <p>
+      <strong>価格：</strong>
+      <%= @product.price %>
+    </p>
+  <% end %>
+  
 
-<!--<p id="notice"><%= notice %></p>-->
-  <h3>Products</h3>
 
-    <table>
-      <thead>
-        <tr>
-          <th>商品タイトル</th>
-          <th>商品説明</th>
-          <th>商品画像名</th>
-          <th>価格</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @products.each do |product| %>
-          <tr>
-            <td><%= product.item %></td>
-            <td><%= product.content %></td>
-            <td><%= product.picture %></td>
-            <td><%= product.price %></td>
-            <td><%= link_to '商品詳細', product %></td>
-            <td><%= link_to '変更', edit_product_path(product) %></td>
-            <td><%= link_to '削除', product, method: :delete, data: { confirm: '一度削除するとデータは完全に失われます。削除してもよいですか？' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-        <%= form_tag products_search_path(product), :method => 'post' do %> <%#product_pathはモデル名で読みかえること %>
-          <p>
-            <%= text_field_tag :search, params[:search] %>
-            <%= submit_tag "検索", :name => nil %>
-          </p>
-        <% end %>
     <br>
-    <%= link_to '新規商品登録', new_product_path(product) %>
+    <%= link_to '新規商品登録', new_product_path%>

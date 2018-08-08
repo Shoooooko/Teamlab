@@ -68,3 +68,7 @@ gem 'jquery-rails'
 gem 'popper_js', '~> 1.12.3'
 gem 'rails-assets-tether', '>= 1.1.0'
 gem 'carrierwave'
+
+
+
+#gem 'rmagick'    #これいろいろ調べて試してみましたがどうしてもinstallできないのでコメントアウト/uploaderとともに

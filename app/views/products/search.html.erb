@@ -23,9 +23,10 @@
         <td><%= product.content %></td><br>
         <td><%= product.picture %></td><br>
         <td><%= product.price %></td><br>
-        <td><%= link_to '商品詳細', product %></td>
-        <td><%= link_to '変更', edit_product_path(product) %></td>
+        <td><%= link_to '商品詳細', product %></td> <!--to 商品詳細'show'-->
+        <td><%= link_to '変更', edit_product_path(product) %></td><!--to 編集'edit'##(ptoductはなに？)-->
         <td><%= link_to '削除', product, method: :delete, data: { confirm: '一度削除するとデータは完全に失われます。削除してもよいですか？' } %></td>
+        <!--to 商品詳細'show'##(method, dataいる？)-->
       </tr>
     <% end %>
   </tbody>

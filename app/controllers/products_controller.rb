@@ -11,13 +11,8 @@ class ProductsController < ApplicationController
   def search
     @products = Product.search(params[:search])
     respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: '商品登録が完了しました' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to @product, notice: '検索結果一覧' }
+      format.json { render :show, status: :done, location: @product }
     end
   end
   
@@ -41,7 +36,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @product = Product.new
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: '商品登録が完了しました' }
@@ -59,6 +54,8 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     respond_to do |format|#responseの形式で分岐(html/json)
+      #Progateのチュートリアルで画像投稿練習をしたときのものです。
+      #この時はすでにPublicフォルダに画像があることが前提でした
       '''if params[:image]
         @product.image_name = "#{@product.id}.jpg"
         image = params[:image]

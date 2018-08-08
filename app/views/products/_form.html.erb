@@ -3,7 +3,10 @@
 #scaffoldによる自動生成
 https://qiita.com/kakiuchis/items/9ab8dc212ed5c57a2ddd
 >
-<%= form_with(model: product, local: true) do |form| %>
+
+<!--application.htmlの方のheaderが優先されてしまって上の方の入力画面が見えなくなってしまっています。。-->
+
+<%= form_with(model: product, local: true, html: {multipart: true}) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -15,6 +18,7 @@ https://qiita.com/kakiuchis/items/9ab8dc212ed5c57a2ddd
       </ul>
     </div>
   <% end %>
+
 
   <div class="field">
     <%= form.label :'商品タイトル' %>
@@ -30,11 +34,7 @@ https://qiita.com/kakiuchis/items/9ab8dc212ed5c57a2ddd
     <%= form.label :'店舗名' %>
     <%= form.text_field :shop %>
   </div>
-  
-  <div class="field">
-    <%= form.label :'商品画像'%>
-    <%= form.file_field :picture, id: :product_picture%>
-  </div>
+
 
   <div class="field">
       <% if @product.picture? %>
@@ -43,6 +43,7 @@ https://qiita.com/kakiuchis/items/9ab8dc212ed5c57a2ddd
         </div>
       <% end %><br>
       <%= form.label :'商品画像'%>
+      <%= form.text_field :picture, id: :product_picture%>
       <%= form.file_field :picture, id: :product_picture%>
       <%= form.hidden_field :picture_cache %>
     </div>
