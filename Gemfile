@@ -71,4 +71,4 @@ gem 'carrierwave'
 
 
 
-#gem 'rmagick'    #これいろいろ調べて試してみましたがどうしてもinstallできないのでコメントアウト/uploaderとともに
+gem 'rmagick'    #これいろいろ調べて試してみましたがどうしてもinstallできないのでコメントアウト/uploaderとともに

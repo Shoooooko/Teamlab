@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new
     respond_to do |format|
-      if @product.save
+      if @product.save!
         format.html { redirect_to @product, notice: '商品登録が完了しました' }
         format.json { render :show, status: :created, location: @product }
       else
@@ -69,7 +69,7 @@ class ProductsController < ApplicationController
       end
       '''
 
-      if @product.update(product_params.permit(:item,:content,:price,:picture, :picture_cache, :remove_picture))
+      if @product.update(product_params.permit(:item,:content,:price,:picture)) #:picture_cache, :remove_picture))
         format.html { redirect_to @product, notice: '商品情報が変更されました' }
         format.json { render :show, status: :ok, location: @product }
       else
