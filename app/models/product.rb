@@ -10,7 +10,7 @@ class Product < ApplicationRecord
         if search
             Product.where(["item Like or shop Like or price Like?","%#{search}%"])
         else
-            Product.all
+            Product.all   #どうしてerrorの場合はすべての情報をProduct.allでreadする必要がある？？
             respond_to do |format|
                 format.html { redirect_to :index, notice: '正しい検索項目を入力してください' }
                 format.json { render json: @product.errors, status: :unprocessable_entity }

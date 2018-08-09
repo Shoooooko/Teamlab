@@ -1,5 +1,5 @@
 class PictureUploader < CarrierWave::Uploader::Base
-  #include CarrierWave::RMagick  #こちらもgemfileでrmagickコメントアウトに合わせて
+  #include CarrierWave::RMagick  #こちらもgemfileでrmagickコメントアウトに合わせて消した
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick

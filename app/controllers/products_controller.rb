@@ -3,11 +3,12 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
-  #商品詳細ページ表示→show
+  #登録された商品情報一覧と他のpageへのリンク
   def index
     @products = Product.all
   end
   
+  #検索結果一覧表示
   def search
     @products = Product.search(params[:search])
     respond_to do |format|
@@ -19,20 +20,25 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   # GET /products/1.json
+  #個々の商品詳細ページ表示
   def show
     #すでにset_productで@Productの情報取得
   end
 
+  #read new input info→form（→create)
   # GET /products/new
   def new
     @product = Product.new
   end
-
+  
+  #read new info to edit//title,or content,or shop→form（→uodate)
   # GET /products/1/edit
   def edit
     #すでにset_productで@Productの情報取得
   end
 
+
+  #form→
   # POST /products
   # POST /products.json
   def create
@@ -49,7 +55,7 @@ class ProductsController < ApplicationController
   end
 
 
-
+  #form→
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
